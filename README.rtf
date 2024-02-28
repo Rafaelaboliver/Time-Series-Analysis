@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2758
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11020\viewh21300\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+\
+Brief documentation for .tenv3 format enhanced with load prediction triplets.\
+\
+NGL now provides time series files enhanced to include the predictions of some geophysical loads, including non-tidal atmospheric loading, non-tidal ocean loading, GRACE-inferred hydrological loading, and large reservoirs.\
+\
+The files are similar to the .tenv3 files except that they include extra columns with the 3-component displacement predictions from the loading models.\
+The text files are found here:  http://geodesy.unr.edu/gps_timeseries/tenv3_loadpredictions/xxxx.tenv3\
+where xxxx is the station 4-character ID.\
+These files are updated periodically. \
+\
+col 1-20:  See .tenv3 README file here: http://geodesy.unr.edu/gps_timeseries/README_tenv3.txt (without station latitude, longitude and height)\
+col 21-23: east, north and up component of non-tidal atmospheric loading displacements  (NTAL)\
+col 24-26: east, north and up components of non-tidal ocean loading displacements  (NTOL)\
+col 27-29: east, north and up components of hydrological model load displacements (HYDL)\
+           The predictions in columns 21-29 are from ESMGFZ (http://rz-vm115.gfz-potsdam.de:8080/repository, Dill and Dobslaw, JGR, 2013; Dill, 2008)\
+           Their hydrological model is from from 24-hourly terrestrial water storage global hydrological model LSDM forced by ECMWF operational atmospheric data\
+           produced by IERS Associated Product Centre Deutsches GeoForschungsZentrum GFZ Potsdam. LSDM masses are given on a regular 0.5\'b0x0.5\'b0.\
+           http://rz-vm115.gfz-potsdam.de:8080/repository/entry/show?entryid=dadb0121-32f0-4eaa-a3ec-b5f37860e4d1\
+col 30-32: east, north, and up components from GRACE mascon-based loading displacements (MASC)\
+col 33-35: east, north, and up components from of reservoir induced loading displacements (RESE)\
+col 36-38: east, north, and up components from of GRACE mascon-based loading displacements inside the western US (WUS)\
+col 39-41: east, north, and up components from of Argus et al., 2022 model of loads in western United States (WUSA)\
+\
+We get the NTAL, NTOL, HYDL measurements at each GPS station by fitting a spline to GFZ's lat, lon grids using their program "extractlatlon_bicubintp".\
+\
+To remove the Argus et al. 2022 model, you must subtract the mascon predictions (4th set of triplets, masc), reservoir water (5th triplets, rese), add then add the mascon inside west U.S. box (6th triplets, wus), and subtract Argus et al. 2022 (7th triplets, wusa).  Removing the Argus et al. 2022 model should bring vertical motion closer to zero in the absence of other factors contributing to vertical motion.\
+\
+Plots of the vertical component of the processed GPS time series data with and without the loading prediction removed are provided at \
+http://geodesy.unr.edu/tsplots/IGS14/IGS14/load_plots/xxxx_load.png\
+where xxxx is the station 4-character ID.\
+\
+In the plots (e.g., http://geodesy.unr.edu/tsplots/IGS14/IGS14/load_plots/P143_load.png) NTAL stands for non-tidal atmospheric loading, NTOL for non-tidal oceanic loading, MASC for GRACE mascon based loading prediction.\
+These plots show the degree to which the loading models explain the GPS vertical displacements.\
+\
+Note that prior to 2002 GRACE mascon data are unavailable so the model is based on an extrapolation based on the mean rate and seasonal oscillation of the GRACE data from the 1st GRACE datum to April 2022.\
+}

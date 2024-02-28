@@ -1,0 +1,50 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2759
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10620\viewh7500\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \ul \ulc0 Notes:\ulnone  \
+\
+1. ICAs components are not necessary at this point. First I will check the linear trend and see if I can identify any difference. If after apply the linear and cos/sen trends I notice that it\'92s difficult to identify the deformation, I can use it to get accurate results;\
+2. It is not necessary to resample the measurements because the karst deformation occurs in a very delicate way, so it will be better if I keep the daily data;\
+3. Remove outlier after I generate de linear trend? Analyse the best option - I could also remove them before using the function of the NumPy library;\
+4. I am going to use the following columns: \'91YYMMMDD\'92, north/east/up(m), uncertain (east, north, up);\
+5. Start with 2-3 years;\
+6. Do a planning on TRELLO.\
+\
+	\ul Libraries:\ulnone \
+\
+	from sklearn.decomposition import FastICA\
+	import matplotlib.pylab as plt\
+	import pandas as pd\
+	import numpy as np\
+	import datetime\
+\
+	%matplotlib inline\
+	np.set_printoptions(precision=3 , suppress= True)\
+\
+\ul First step:\ulnone \
+;\
+Reduce the time serie\'92s period;\
+\
+\ul Second step:\ulnone \
+If I think it is necessary, I can convert from meters to millimetres the east, north and up columns;\
+Change the format of the \'91YYMMMDD\'92 column to \'91date stamp\'92 (%d%b%y);\
+Set \'91YYMMMDD\'92 as index;\
+D-trend the data using NumPy;\
+Remove the outliers using NumPy with limiar_z = 3.0;\
+Reset index* \
+\
+\ul Third step:\ulnone \
+Plot graphics - north, east, up;\
+Create the linear trend and observe the data - a second way is to remove the outliers after this step.\
+\
+\
+\
+explicar o significado do termo 'tend\'eancia' dentro de uma s\'e9ries temporal, como podemos identifica-la. como podemos identificar sazonalidade \
+\
+Linear detrend y = ax + b\
+Do the rolling mean\
+Do the stack from the rolling mean - stack: put in the same reference}
